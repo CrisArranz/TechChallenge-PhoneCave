@@ -6,6 +6,15 @@ const logger = require("morgan");
 const app = express();
 app.use(logger("dev"));
 
+//CORS Middleware
+app.use((req, res, next) => {
+  res.set("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.set("Access-Control-Allow-Headers", "content-type");
+  res.set("Access-Control-Allow-Methods", "GET");
+  res.set("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 const routes = require("./config/routes.config");
 app.use("/", routes);
 
